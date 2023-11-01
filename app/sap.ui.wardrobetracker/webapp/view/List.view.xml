@@ -1,0 +1,71 @@
+<mvc:View
+    controllerName="sap.ui.wardrobetracker.controller.List"
+	xmlns="sap.m"
+	xmlns:f="sap.f"
+	xmlns:mvc="sap.ui.core.mvc">
+	<f:DynamicPage id="viewList" toggleHeaderOnTitleClick="false">
+		<!-- DynamicPage Title -->
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<Title text="Items:({/Wardrobe/$count})"/>
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title>
+
+		<!-- DynamicPage Content -->
+		<f:content>
+			<VBox fitContainer="true">
+				<OverflowToolbar class="sapFDynamicPageAlignContent">
+					<ToolbarSpacer/>
+					<Label id="totalPriceLabel" text="Total Price: 0 CHF" />
+					<Select ></Select>
+					<SearchField search=".onSearch" width="17.5rem"/>
+					<OverflowToolbarButton icon="sap-icon://add" text="Add" type="Transparent" press=".onAdd" />
+					<OverflowToolbarButton icon="sap-icon://sort" text="Sort" type="Transparent" press=".onSort"/>
+					
+				</OverflowToolbar>
+				<Table
+					id="productsTable"
+					inset="false"
+					class="sapFDynamicPageAlignContent"
+					width="auto">
+					<columns>
+						<Column width="12em">
+							<Text text="Item"/>
+						</Column>
+						<Column	hAlign="End">
+							<Text text="Price"/>
+						</Column>
+					</columns>
+					<dependents>
+						<ColumnListItem id="columnListTemplate" type="Navigation" press=".onListItemPress">
+							<cells>
+								<ObjectIdentifier title="{name}" text="{brand}"/>
+								<ObjectNumber
+									number="{
+										parts:[
+											{path:'price'},
+											{path:'currency'}
+										],
+										type: 'sap.ui.model.type.Currency',
+										formatOptions: {showMeasure: false}
+									}"
+									unit="CHF"/>
+							</cells>
+						</ColumnListItem>
+					</dependents>
+				</Table>
+			</VBox>
+		</f:content>
+
+		<!-- DynamicPage Footer -->
+		<f:footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button type="Accept" text="Accept"/>
+				<Button type="Reject" text="Reject"/>
+			</OverflowToolbar>
+		</f:footer>
+	</f:DynamicPage>
+</mvc:View>

@@ -1,0 +1,160 @@
+{
+  "_version": "1.49.0",
+  "sap.app": {
+    "id": "sap.ui.wardrobetracker",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.11.0",
+      "toolsId": "fd47f309-5dba-47b6-9ffa-6eb7291b3ec7"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/catalog/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.118.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.ui.table": {},
+        "sap.ushell": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "sap.ui.wardrobetracker.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.f.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "sap.ui.wardrobetracker.view",
+        "controlAggregation": "pages",
+        "controlId": "fcl",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "RouteList",
+          "pattern": ":layout:",
+          "target": [
+            "List" 
+          ]
+        },
+        {
+          "name": "RouteDetail",
+          "pattern": "detail/{id}",
+          "target": [
+            "List",
+            "Detail"
+          ]
+        },
+        {
+          "name": "RouteImage",
+          "pattern": "detail/{id}/image",
+          "target": [
+            "List",
+            "Detail",
+            "ImageView" 
+          ]
+        }
+      ],
+      "targets": {
+        "List": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "viewList",
+          "viewName": "List",
+          "controlAggregation": "beginColumnPages"
+        },
+        "Detail": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "viewDetail",
+          "viewName": "Detail",
+          "controlAggregation": "midColumnPages"
+        },
+        "ImageView" : {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "viewImage",
+          "viewName": "ImageView",
+          "controlAggregation": "endColumnPages"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "sap.ui.wardrobetracker.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "fcl"
+    }
+  }
+}

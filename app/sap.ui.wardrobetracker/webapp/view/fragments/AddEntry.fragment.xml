@@ -1,0 +1,120 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+>
+    <Dialog
+        title="Add Table Entry"
+        contentWidth="850px"
+    >
+        <f:SimpleForm>
+                <Toolbar id="TB1">
+                	<Title id="Title1" text="Info"/>
+                </Toolbar>
+                    <Label text="Name" />
+                    <Input
+                        id="inputName"
+                        placeholder="Runner low-top sneakers"
+                        required="true"
+                    />
+
+                    <Label text="Brand" />
+                    <Input
+                        id="inputBrand"
+                        placeholder="Balenciaga"
+                        required="true"
+                    />
+
+            <Label text="Color" />
+            <Input
+                id="inputColor"
+                placeholder="Black"
+                required="true"
+            />
+
+            <Label text="Size" />
+            <Input
+                id="inputSize"
+                placeholder="42"
+                required="true"
+            />
+
+            <Label text="Price" />
+            <Input
+                id="inputPrice"
+                placeholder="795"
+                required="true"
+            />
+
+
+                <Toolbar id="TB2">
+                	<Title id="Title2" text="Image URL:"/>
+                </Toolbar>
+            <Label text="Image URL" />
+            <Input
+                id="inputUrl"
+                placeholder="https://cdn-images.farfetch-contents.com/17/20/68/36/17206836_38099097_1000.jpg"
+            />
+
+            <Label text="Type" />
+            <Select
+                id="selectType"
+                selectedKey="Footwear"
+                required="true"
+            >
+                <items>
+                    <core:Item
+                        text="Bottoms"
+                        key="Bottoms"
+                    />
+                    <core:Item
+                        text="Footwear"
+                        key="Footwear"
+                    />
+                    <core:Item
+                        text="Tops"
+                        key="Tops"
+                    />
+                    <core:Item
+                        text="Outerwear"
+                        key="Outerwear"
+                    />
+                    <core:Item
+                        text="Accessories"
+                        key="Accessories"
+                    />
+                </items>
+            </Select>
+                <Toolbar id="TB3">
+                	<Title id="Title3" text="Description"/>
+                </Toolbar>
+
+            <Label text="Description" />
+            <Input
+                id="inputDescription"
+                placeholder="Balenciaga's cult Runner low-top sneakers debuted in 2021. This all-black iteration features mesh paneling all over for breathability."
+                required="true"
+            />
+
+            <Label text="Season" />
+            <Input
+                id="inputSeason"
+                placeholder="Summer 21"
+                required="true"
+            />
+
+            <Label text="Designer" />
+            <Input
+                id="inputDesigner"
+                placeholder="Demna Gvasalia"
+                required="true"
+            />
+        </f:SimpleForm>
+            <Toolbar>
+                <ToolbarSpacer />
+                    <Button text="Submit" press="onSubmit" class ="sapUiSmallMarginBottom"/>
+                    <Button text="Cancel" press="onCancel" class ="sapUiSmallMarginBottom"/>
+            </Toolbar>
+    </Dialog>
+</core:FragmentDefinition>
