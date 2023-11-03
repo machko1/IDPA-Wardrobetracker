@@ -5,7 +5,8 @@ sap.ui.define([
     "sap/ui/model/Sorter",
     "sap/m/MessageBox",
     'sap/f/library',
-    "sap/ui/core/Fragment"
+    "sap/ui/core/Fragment",
+    "../model/formatter"
 
 ], function (BaseController, Filter, FilterOperator, Sorter, MessageBox, fioriLibrary, Fragment) {
     "use strict";
@@ -16,7 +17,7 @@ sap.ui.define([
             this.oView = this.getView();
             this._bDescendingSort = false;
             this.oProductsTable = this.oView.byId("productsTable");
-            
+
             this.oProductsTable.bindItems({
                 path: "/Wardrobe",
                 template: this.oView.byId("columnListTemplate"),
@@ -24,10 +25,10 @@ sap.ui.define([
             });
         },
 
-        _onRouteMatched: function (oEvent){
+        _onRouteMatched: function (oEvent) {
             /*this.calculateTotalPrice();*/
-			const oList = this.getView().byId("productsTable");
-            oList.getBinding("items").refresh();   
+            const oList = this.getView().byId("productsTable");
+            oList.getBinding("items").refresh();
         },
 
         onSearch: function (oEvent) {
@@ -130,18 +131,28 @@ sap.ui.define([
             this.getRouter().navTo("RouteDetail", { id: pressedId });
         },
 
-      /*  calculateTotalPrice: function () {
-            const oModel = this.getView().getModel(); // Assuming you have a model bound to your view
-            const aItems = oModel.getProperty("/Wardrobe"); // Assuming your items are in a collection called "Wardrobe"
-        
-            const totalPrice = aItems.reduce(function (total, item) {
-                return total + item.price;
-            }, 0);
-        
-            const sTotalPriceLabel = "Total Price: " + totalPrice + " CHF";
-            this.byId("totalPriceLabel").setText(sTotalPriceLabel);
+        onFilterChange: function (oEvent) {
+            var oTableFilterState = [],
+                sSelectedCategory = oEvent.getSource().getSelectedKey();
+
+            if (sSelectedCategory && sSelectedCategory !== "all") {
+                oTableFilterState = [new Filter("category", FilterOperator.EQ, sSelectedCategory)];
+            }
+
+            this.oProductsTable.getBinding("items").filter(oTableFilterState, "Application");
         }
-*/
-        
+        /*  calculateTotalPrice: function () {
+              const oModel = this.getView().getModel(); // Assuming you have a model bound to your view
+              const aItems = oModel.getProperty("/Wardrobe"); // Assuming your items are in a collection called "Wardrobe"
+          
+              const totalPrice = aItems.reduce(function (total, item) {
+                  return total + item.price;
+              }, 0);
+          
+              const sTotalPriceLabel = "Total Price: " + totalPrice + " CHF";
+              this.byId("totalPriceLabel").setText(sTotalPriceLabel);
+          }
+  */
+
     });
 });

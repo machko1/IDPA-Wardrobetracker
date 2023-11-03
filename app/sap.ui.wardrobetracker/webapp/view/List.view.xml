@@ -1,8 +1,10 @@
 <mvc:View
     controllerName="sap.ui.wardrobetracker.controller.List"
 	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
 	xmlns:f="sap.f"
-	xmlns:mvc="sap.ui.core.mvc">
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:formatter="sap.ui.wardrobetracker.model.formatter">
 	<f:DynamicPage id="viewList" toggleHeaderOnTitleClick="false">
 		<!-- DynamicPage Title -->
 		<f:title>
@@ -18,8 +20,15 @@
 			<VBox fitContainer="true">
 				<OverflowToolbar class="sapFDynamicPageAlignContent">
 					<ToolbarSpacer/>
-					<Label id="totalPriceLabel" text="Total Price: 0 CHF" />
-					<Select ></Select>
+					<Text text="Filter by Category:"></Text>
+					<Select id="selectFilter" forceSelection="false" change=".onFilterChange">
+						<core:Item key="all" text="None" />
+						<core:Item key="Footwear" text="Footwear" />
+						<core:Item key="Bottoms" text="Bottoms" />
+						<core:Item key="Tops" text="Tops" />
+						<core:Item key="Outerwear" text="Outerwear" />
+						<core:Item key="Accessoires" text="Accessoires" />
+					</Select>
 					<SearchField search=".onSearch" width="17.5rem"/>
 					<OverflowToolbarButton icon="sap-icon://add" text="Add" type="Transparent" press=".onAdd" />
 					<OverflowToolbarButton icon="sap-icon://sort" text="Sort" type="Transparent" press=".onSort"/>
@@ -36,6 +45,9 @@
 						</Column>
 						<Column	hAlign="End">
 							<Text text="Price"/>
+							 <footer>
+								<Text text="Total Price: {view>/totalPrice} CHF" />
+							</footer>
 						</Column>
 					</columns>
 					<dependents>
