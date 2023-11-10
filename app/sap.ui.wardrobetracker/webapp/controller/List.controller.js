@@ -6,7 +6,7 @@ sap.ui.define([
     "sap/m/MessageBox",
     'sap/f/library',
     "sap/ui/core/Fragment",
-    "../model/formatter"
+    "../model/formatter",
 
 ], function (BaseController, Filter, FilterOperator, Sorter, MessageBox, fioriLibrary, Fragment) {
     "use strict";
@@ -26,9 +26,10 @@ sap.ui.define([
         },
 
         _onRouteMatched: function (oEvent) {
-            /*this.calculateTotalPrice();*/
+            this.calculateTotalPrice();
             const oList = this.getView().byId("productsTable");
             oList.getBinding("items").refresh();
+
         },
 
         onSearch: function (oEvent) {
@@ -109,6 +110,7 @@ sap.ui.define([
             this._oDialog.close();
             this._oDialog.destroy();
             this._oDialog = undefined;
+            this.calculateTotalPrice();
         },
 
         onCancel: function () {
@@ -136,23 +138,23 @@ sap.ui.define([
                 sSelectedCategory = oEvent.getSource().getSelectedKey();
 
             if (sSelectedCategory && sSelectedCategory !== "all") {
-                oTableFilterState = [new Filter("category", FilterOperator.EQ, sSelectedCategory)];
+                oTableFilterState = [new Filter("type", FilterOperator.EQ, sSelectedCategory)];
             }
 
             this.oProductsTable.getBinding("items").filter(oTableFilterState, "Application");
-        }
-        /*  calculateTotalPrice: function () {
-              const oModel = this.getView().getModel(); // Assuming you have a model bound to your view
-              const aItems = oModel.getProperty("/Wardrobe"); // Assuming your items are in a collection called "Wardrobe"
-          
-              const totalPrice = aItems.reduce(function (total, item) {
-                  return total + item.price;
-              }, 0);
-          
-              const sTotalPriceLabel = "Total Price: " + totalPrice + " CHF";
-              this.byId("totalPriceLabel").setText(sTotalPriceLabel);
-          }
-  */
+        },
+        calculateTotalPrice: function () {
+            var oList = this.getView().getModel().bindList("/Wardrobe");
 
+            oList.requestContexts(0, oList.getLength()).then(function (aContexts) {
+                const totalPrice = aContexts.reduce(function (total, oContext) {
+                    var sPrice = oContext.getProperty("price");
+                    return total + parseFloat(sPrice);
+                }, 0);
+
+                var sTotalPriceLabel = "Total Price: " + totalPrice + " CHF";
+                this.getView().byId("totalPriceLabel").setText(sTotalPriceLabel);
+            }.bind(this)); 
+        }
     });
 });

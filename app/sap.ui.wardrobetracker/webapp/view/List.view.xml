@@ -45,9 +45,9 @@
 						</Column>
 						<Column	hAlign="End">
 							<Text text="Price"/>
-							 <footer>
-								<Text text="Total Price: {view>/totalPrice} CHF" />
-							</footer>
+							  	<footer>
+        						<Text id="totalPriceLabel" text="Total Price: " />
+    							</footer>
 						</Column>
 					</columns>
 					<dependents>
