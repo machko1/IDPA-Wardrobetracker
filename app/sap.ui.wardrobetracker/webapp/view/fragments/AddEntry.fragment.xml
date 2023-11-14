@@ -3,7 +3,8 @@
     xmlns:core="sap.ui.core"
     xmlns:f="sap.ui.layout.form"
     xmlns:l="sap.ui.layout"
->
+    xmlns:u="sap.ui.unified"
+>   
     <Dialog
         title="Add Table Entry"
         contentWidth="850px"
@@ -49,13 +50,22 @@
 
 
                 <Toolbar id="TB2">
-                	<Title id="Title2" text="Image URL:"/>
+                	<Title id="Title2" text="Image Upload:"/>
                 </Toolbar>
             <Label text="Image URL" />
             <Input
                 id="inputUrl"
                 placeholder="https://cdn-images.farfetch-contents.com/17/20/68/36/17206836_38099097_1000.jpg"
             />
+
+            <Label text="Upload Image" />
+            <u:FileUploader
+                id="fileUploader"
+                tooltip="Upload your image"
+                change="onFileChange"
+            />
+
+            <Button text="Upload" press="onUploadFile" type="Emphasized"/>
 
             <Label text="Type" />
             <Select

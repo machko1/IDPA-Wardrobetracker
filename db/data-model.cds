@@ -19,3 +19,14 @@ entity Wardrobe {
       designer    : String;
       description : String;
 }
+
+entity MediaFile {
+    key id        : Integer;
+        @Core.MediaType   : mediaType
+        content   : LargeBinary;
+        @Core.IsMediaType : true
+        mediaType : String;
+        fileName  : String;
+        url       : String;
+};
+
