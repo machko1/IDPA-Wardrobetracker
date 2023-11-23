@@ -1,0 +1,39 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified">
+    <Dialog title="Edit Table Entry" contentWidth="850px">
+        <f:SimpleForm>
+            <Toolbar id="TB1">
+                <Title id="Title1" text="Info"/>
+            </Toolbar>
+            <Label text="Name" />
+            <Input id="inputName" value="{name}" />
+
+            <Label text="Brand" />
+            <Input id="inputBrand" value="{brand}" />
+
+            <Label text="Price" />
+            <Input id="inputPrice" value="{price}" />
+
+            <Label text="Size" />
+            <Input id="inputSize" value="{size}" />
+
+            <Label text="Type" />
+            <Input id="inputType" value="{type}" />
+            
+            <Label text="Designer" />
+            <Input id="inputDesigner" value="{designer}" />
+
+            <Label text="Brand" />
+            <Input id="inputSeason" value="{season}" />
+
+            <Label text="Description" />
+            <Input id="inputDescription" value="{description}" />
+
+            <Toolbar>
+                <ToolbarSpacer />
+                <Button text="Save" press="onSubmit" class="sapUiSmallMarginBottom" />
+                <Button text="Cancel" press="onCancel" class="sapUiSmallMarginBottom" />
+            </Toolbar>
+        </f:SimpleForm>
+    </Dialog>
+</core:FragmentDefinition>
+ 

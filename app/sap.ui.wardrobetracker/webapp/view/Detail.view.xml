@@ -44,8 +44,9 @@
 						press=".onDelete"
 						type="Transparent"/>
 					<m:Button
-						icon="sap-icon://action"
-						type="Transparent"/>
+						icon="sap-icon://write-new-document"
+						text="Edit"
+						press=".onEdit" />
 				</actions>
 			</ObjectPageDynamicHeaderTitle>
 		</headerTitle>

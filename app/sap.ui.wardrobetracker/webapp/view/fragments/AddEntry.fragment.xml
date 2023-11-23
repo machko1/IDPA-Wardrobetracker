@@ -124,7 +124,7 @@
             <Toolbar>
                 <ToolbarSpacer />
                     <Button text="Submit" press="onSubmit" class ="sapUiSmallMarginBottom"/>
-                    <Button text="Cancel" press="onCancel" class ="sapUiSmallMarginBottom"/>
+                    <Button text="Cancel" press=".onCancel" class ="sapUiSmallMarginBottom"/>
             </Toolbar>
     </Dialog>
 </core:FragmentDefinition>
