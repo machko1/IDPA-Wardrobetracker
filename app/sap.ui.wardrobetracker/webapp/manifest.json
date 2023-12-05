@@ -24,6 +24,10 @@
           "localUri": "localService/metadata.xml",
           "odataVersion": "4.0"
         }
+      },
+      "editModel":{
+        "uri":"model/editValues.json",
+        "type":"JSON"
       }
     }
   },
@@ -78,6 +82,9 @@
           "autoExpandSelect": true,
           "earlyRequests": true
         }
+      },
+      "editValues":{
+        "dataSource": "editModel"
       }
     },
     "resources": {

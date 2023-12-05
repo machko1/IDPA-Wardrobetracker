@@ -5,28 +5,28 @@
                 <Title id="Title1" text="Info"/>
             </Toolbar>
             <Label text="Name" />
-            <Input id="inputName" value="{name}" />
+            <Input value="{editValues>/name}" id="inputName" />
 
             <Label text="Brand" />
-            <Input id="inputBrand" value="{brand}" />
+            <Input id="inputBrand" value="{editValues>/brand}" />
 
             <Label text="Price" />
-            <Input id="inputPrice" value="{price}" />
+            <Input id="inputPrice" value="{editValues>/price}" />
 
             <Label text="Size" />
-            <Input id="inputSize" value="{size}" />
+            <Input id="inputSize" value="{editValues>/size}" />
 
             <Label text="Type" />
-            <Input id="inputType" value="{type}" />
+            <Input id="inputType" value="{editValues>/type}" />
             
             <Label text="Designer" />
-            <Input id="inputDesigner" value="{designer}" />
+            <Input id="inputDesigner" value="{editValues>/designer}" />
 
             <Label text="Brand" />
-            <Input id="inputSeason" value="{season}" />
+            <Input id="inputSeason" value="{editValues>/season}" />
 
             <Label text="Description" />
-            <Input id="inputDescription" value="{description}" />
+            <Input id="inputDescription" value="{editValues>/description}" />
 
             <Toolbar>
                 <ToolbarSpacer />

@@ -1,7 +1,10 @@
 {
-    "editedName": "",
-    "editedBrand": "",
-    "editedColor": "",
-    "editedSize": 0,
-    "editedPrice": 0
+    "name": "",
+    "brand": "",
+    "color": "",
+    "size": "",
+    "price": 0,
+    "description": "",
+    "type": "",
+    "season": ""
 }

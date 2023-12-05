@@ -1,8 +1,10 @@
 sap.ui.define([
 	"./BaseController",
 	"sap/f/library",
-	"sap/ui/core/Fragment"
-], function (BaseController, fioriLibrary, Fragment) {
+	"sap/ui/core/Fragment",
+	"sap/ui/model/json/JSONModel",
+	"sap/ui/thirdparty/jquery"
+], function (BaseController, fioriLibrary, Fragment, JSONModel, jquery) {
 	"use strict";
 
 	return BaseController.extend("sap.ui.wardrobetracker.controller.Detail", {
@@ -54,55 +56,39 @@ sap.ui.define([
 				});
 				this.getView().addDependent(this._oDialog);
 			}
-			// Clear input fields
+			const oBindingContext = this.getView().getBindingContext();
+			const oEditModel = this.getView().getModel("editValues");
+
+			const sName = oBindingContext.getProperty("name");
+			oEditModel.setProperty("/",oBindingContext.getObject());
+			console.log(oBindingContext.getObject());
+
 			this._oDialog.open();
 		},
 
 		onCancel: function () {
+			var oEditModel = this.getView().getModel("editValues");
 			this._oDialog.close();
 		},
 		onSubmit: async function () {
-			const oEditModel = this.getView().getModel("editValues");
+			var oEditModel = this.getView().getModel("editValues")
 			const oModel = this.getView().getModel();
-			
-			const oInputName = await Fragment.byId("editEntry", "inputName");
-			const oInputBrand = await Fragment.byId("editEntry", "inputBrand");
-			const oInputPrice = await Fragment.byId("editEntry", "inputPrice");
-			const oInputSize = await Fragment.byId("editEntry", "inputSize");
-			const oInputType = await Fragment.byId("editEntry", "inputType");
-			const oInputDesigner = await Fragment.byId("editEntry", "inputDesigner");
-			const oInputSeason = await Fragment.byId("editEntry", "inputSeason");
-			const oInputDescription = await Fragment.byId("editEntry", "inputDescription");
-			
-			// var sInputName = oInputName.getValue();
-			// var sInputBrand = oInputBrand.getValue();
-			// var sInputPrice = oInputPrice.getValue();
-			// var sInputSize = oInputSize.getValue();
-			// var sInputType = oInputType.getValue();
-			// var sInputDesigner = oInputDesigner.getValue();
-			// var sInputSeason = oInputSeason.getValue();
-			// var sInputDescription = oInputDescription.getValue();
-			
-			// selectedItemContext.setProperty("name", editedName);
-			// selectedItemContext.setProperty("brand", editedBrand);
-			// selectedItemContext.setProperty("name", editedName);
-			// selectedItemContext.setProperty("name", editedName);
+			const oBindingContext = this.getView().getBindingContext();
 
+			oBindingContext.setProperty("name",oEditModel.getProperty("/name"));
+			oBindingContext.setProperty("brand",oEditModel.getProperty("/brand"));
+			oBindingContext.setProperty("price",oEditModel.getProperty("/price"));
+			oBindingContext.setProperty("size",oEditModel.getProperty("/size"));
+			oBindingContext.setProperty("designer",oEditModel.getProperty("/designer"));
+			oBindingContext.setProperty("designer",oEditModel.getProperty("/description"));
 
-
-			// const selectedItemContext = this._getSelectedItemContext(); 
-			//var sEditedName = this.
-
-
-
-			this._oEditDialog.close();
-			this._oEditDialog.destroy();
-			this._oEditDialog = undefined;
+			this.oDialog.close();
+			this.oDialog.destroy();
+			this._oDialog = undefined;
 			const oList = this.getView().byId("productsTable");
 			oList.getBinding("items").refresh();
 			this.calculateTotalPrice();
 
-			
 		}
 
 	});
